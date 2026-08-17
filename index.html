@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The I Have No Clothes Store — a playful digital wardrobe and AI stylist." />
+  <title>The I Have No Clothes Store™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" data-route="home">
+        <span class="brand-mark">✦</span>
+        <span>
+          <strong>The I Have No Clothes Store™</strong>
+          <small>Chris AI • Head of Wardrobe Operations</small>
+        </span>
+      </a>
+      <button class="icon-button" id="menuButton" aria-label="Open menu">☰</button>
+    </header>
+
+    <main id="app">
+      <section class="page active" id="home">
+        <div class="hero-card">
+          <span class="eyebrow">WELCOME TO THE STORE</span>
+          <h1>I have nothing to wear.</h1>
+          <p class="hero-subtitle">
+            A completely unnecessary solution to a problem that apparently does not exist.
+          </p>
+
+          <div class="chris-message">
+            <div class="avatar">C</div>
+            <div>
+              <strong>Chris AI</strong>
+              <p>
+                Hi, I'm Chris, your boyfriend. I'm here to assist you and prove that,
+                actually, you <em>do</em> have enough clothes and shoes.
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="primary-button" data-route="generator">I HAVE NOTHING TO WEAR ✨</button>
+            <button class="secondary-button" data-route="wardrobe">Show Me My Wardrobe</button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span>👚</span>
+            <strong id="topCount">0</strong>
+            <small>tops</small>
+          </article>
+          <article class="stat-card">
+            <span>👖</span>
+            <strong id="bottomCount">0</strong>
+            <small>bottoms</small>
+          </article>
+          <article class="stat-card">
+            <span>👟</span>
+            <strong id="shoeCount">0</strong>
+            <small>shoes</small>
+          </article>
+          <article class="stat-card">
+            <span>✨</span>
+            <strong id="savedCount">0</strong>
+            <small>saved looks</small>
+          </article>
+        </div>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">QUICK START</span>
+              <h2>What are we doing today?</h2>
+            </div>
+          </div>
+          <div class="quick-grid">
+            <button class="feature-card" data-route="generator">
+              <span>✨</span>
+              <strong>Make me an outfit</strong>
+              <small>Tell Chris your mood and occasion.</small>
+            </button>
+            <button class="feature-card" data-route="builder">
+              <span>🪞</span>
+              <strong>Build it myself</strong>
+              <small>Mix and match your actual wardrobe.</small>
+            </button>
+            <button class="feature-card" data-route="inspiration">
+              <span>📌</span>
+              <strong>Steal my inspiration</strong>
+              <small>Save Pinterest-style inspiration for later.</small>
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" id="wardrobe">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">YOUR CLOSET</span>
+            <h1>My Wardrobe</h1>
+            <p>Upload your pieces. We promise not to judge the quantity.</p>
+          </div>
+          <label class="upload-button">
+            + Add pieces
+            <input id="wardrobeUpload" type="file" accept="image/*" multiple hidden />
+          </label>
+        </div>
+
+        <div class="filter-row" id="categoryFilters">
+          <button class="filter active" data-category="all">All</button>
+          <button class="filter" data-category="top">Tops</button>
+          <button class="filter" data-category="bottom">Bottoms</button>
+          <button class="filter" data-category="dress">Dresses</button>
+          <button class="filter" data-category="outerwear">Outerwear</button>
+          <button class="filter" data-category="shoes">Shoes</button>
+          <button class="filter" data-category="accessory">Accessories</button>
+        </div>
+
+        <div id="wardrobeGrid" class="wardrobe-grid"></div>
+        <div id="emptyWardrobe" class="empty-state">
+          <div>🛍️</div>
+          <h2>The shelves are empty.</h2>
+          <p>Add a few favourite pieces and we'll start building the store.</p>
+        </div>
+      </section>
+
+      <section class="page" id="generator">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">CHRIS AI • STYLIST MODE</span>
+            <h1>Okay. What are we wearing?</h1>
+            <p>Give me the situation. I'll handle the wardrobe crisis.</p>
+          </div>
+        </div>
+
+        <div class="generator-layout">
+          <div class="control-panel">
+            <div class="form-group">
+              <label>What's the mood?</label>
+              <div class="mood-grid">
+                <button class="mood-option selected" data-mood="happy">😊<span>Happy</span></button>
+                <button class="mood-option" data-mood="meh">😐<span>Meh</span></button>
+                <button class="mood-option" data-mood="sad">😭<span>Sad</span></button>
+                <button class="mood-option" data-mood="mad">😡<span>Don't talk</span></button>
+                <button class="mood-option" data-mood="cool">😎<span>Feeling myself</span></button>
+                <button class="mood-option" data-mood="tired">🥱<span>Just woke up</span></button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="occasion">Where are you going?</label>
+              <select id="occasion">
+                <option value="casual">Casual day</option>
+                <option value="work">Work / university</option>
+                <option value="date">Date night</option>
+                <option value="dinner">Dinner</option>
+                <option value="party">Party</option>
+                <option value="holiday">Holiday</option>
+                <option value="unknown">I don't know, make me look good</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="style">What vibe?</label>
+              <select id="style">
+                <option value="casual-chic">Casual chic</option>
+                <option value="streetwear">Streetwear</option>
+                <option value="minimal">Minimal</option>
+                <option value="feminine">Feminine</option>
+                <option value="edgy">Edgy</option>
+                <option value="comfy">Comfy but cute</option>
+              </select>
+            </div>
+
+            <button class="primary-button full" id="generateButton">Generate my outfit ✨</button>
+          </div>
+
+          <div class="result-panel" id="outfitResult">
+            <div class="result-placeholder">
+              <span>✨</span>
+              <h2>Your outfit is waiting.</h2>
+              <p>Chris has not been given enough information to make a questionable decision yet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="builder">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">MANUAL MODE</span>
+            <h1>Build the outfit yourself.</h1>
+            <p>Because apparently AI doesn't get to have all the fun.</p>
+          </div>
+        </div>
+
+        <div class="builder-layout">
+          <div class="builder-slots">
+            <div class="outfit-preview">
+              <div class="preview-head">YOUR LOOK</div>
+              <div class="slot-list" id="builderSlots"></div>
+            </div>
+            <div class="builder-actions">
+              <button class="secondary-button" id="clearBuilder">Clear</button>
+              <button class="primary-button" id="saveBuilder">Save outfit ❤️</button>
+            </div>
+          </div>
+          <div>
+            <h3>Pick pieces</h3>
+            <div class="mini-wardrobe" id="builderWardrobe"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="inspiration">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">INSPIRATION</span>
+            <h1>Steal my Pinterest style.</h1>
+            <p>Save inspiration images here. Pinterest integration comes later.</p>
+          </div>
+          <label class="upload-button">
+            + Add inspiration
+            <input id="inspirationUpload" type="file" accept="image/*" multiple hidden />
+          </label>
+        </div>
+        <div id="inspirationGrid" class="inspiration-grid"></div>
+        <div id="emptyInspiration" class="empty-state">
+          <div>📌</div>
+          <h2>No inspiration yet.</h2>
+          <p>Add a few looks you love. Later we'll teach Chris how to recreate the vibe from your wardrobe.</p>
+        </div>
+      </section>
+
+      <section class="page" id="saved">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">YOUR FAVOURITES</span>
+            <h1>Saved Looks</h1>
+            <p>The outfits that survived the selection process.</p>
+          </div>
+        </div>
+        <div id="savedGrid" class="saved-grid"></div>
+        <div id="emptySaved" class="empty-state">
+          <div>❤️</div>
+          <h2>Nothing saved yet.</h2>
+          <p>When an outfit deserves a place in history, save it here.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button data-route="home" class="nav-item active"><span>⌂</span><small>Home</small></button>
+      <button data-route="wardrobe" class="nav-item"><span>👗</span><small>Wardrobe</small></button>
+      <button data-route="generator" class="nav-item main-nav"><span>✨</span><small>Style Me</small></button>
+      <button data-route="builder" class="nav-item"><span>🪞</span><small>Builder</small></button>
+      <button data-route="saved" class="nav-item"><span>❤️</span><small>Saved</small></button>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
