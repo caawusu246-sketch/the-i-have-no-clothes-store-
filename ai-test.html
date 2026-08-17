@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chris AI Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f7f3ee;
+      color: #25201e;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    img {
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 16px;
+      margin: 20px 0;
+      display: none;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: #25201e;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    #result {
+      margin-top: 25px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>👗 Chris AI Test</h1>
+
+    <p>
+      Upload one clothing item and let's see if Chris actually knows
+      what he's looking at.
+    </p>
+
+    <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp">
+
+    <br>
+
+    <img id="preview" alt="Clothing preview">
+
+    <br>
+
+    <button id="analyzeButton" disabled>
+      Ask Chris 👀
+    </button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const imageInput = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+    const analyzeButton = document.getElementById("analyzeButton");
+    const result = document.getElementById("result");
+
+    let imageData = null;
+
+    imageInput.addEventListener("change", () => {
+      const file = imageInput.files[0];
+
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        imageData = reader.result;
+
+        preview.src = imageData;
+        preview.style.display = "block";
+
+        analyzeButton.disabled = false;
+        result.textContent = "";
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    analyzeButton.addEventListener("click", async () => {
+      if (!imageData) return;
+
+      analyzeButton.disabled = true;
+      analyzeButton.textContent = "Chris is investigating... 🔎";
+      result.textContent = "";
+
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/analyze-clothing",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              image: imageData
+            })
+          }
+        );
+
+        const rawResponse = await response.text();
+
+let data;
+
+try {
+  data = JSON.parse(rawResponse);
+} catch {
+  data = {
+    error: rawResponse || "The server returned an empty response."
+  };
+}
+
+if (!response.ok) {
+  throw new Error(
+    `Server returned ${response.status}: ${
+      data.details || data.error || "Unknown error"
+    }`
+  );
+}
+
+        result.textContent =
+          JSON.stringify(data.clothing, null, 2);
+
+      } catch (error) {
+        result.textContent =
+          "❌ Chris encountered a wardrobe emergency:\n\n" +
+          error.message;
+
+      } finally {
+        analyzeButton.disabled = false;
+        analyzeButton.textContent = "Ask Chris 👀";
+      }
+    });
+  </script>
+
+</body>
+</html>
