@@ -13,7 +13,10 @@ const demoWardrobe = [
   { id: crypto.randomUUID(), name: "Little Black Dress", category: "dress", image: placeholder("Black Dress", "#302d2b") }
 ];
 
-let wardrobe = load(STORAGE_KEYS.wardrobe, demoWardrobe);
+let wardrobe = load(STORAGE_KEYS.wardrobe, demoWardrobe).map(item => ({
+  ...item, color: item.color || "Unknown", style: item.style || "Casual",
+  season: item.season || "All year", favourite: Boolean(item.favourite)
+}));
 let savedLooks = load(STORAGE_KEYS.saved, []);
 let inspiration = load(STORAGE_KEYS.inspiration, []);
 let builderItems = [];
@@ -89,22 +92,34 @@ document.querySelectorAll(".mood-option").forEach(button => {
   });
 });
 
-document.getElementById("wardrobeUpload").addEventListener("change", async event => {
-  const files = [...event.target.files];
-  for (const file of files) {
-    const image = await fileToDataURL(file);
-    wardrobe.push({
-      id: crypto.randomUUID(),
-      name: cleanFileName(file.name),
-      category: guessCategory(file.name),
-      image
-    });
-  }
-  persist(STORAGE_KEYS.wardrobe, wardrobe);
-  renderWardrobe();
-  updateStats();
-  showToast(`${files.length} piece${files.length === 1 ? "" : "s"} added. Chris is taking notes. 👀`);
-  event.target.value = "";
+const pieceModal = document.getElementById("pieceModal");
+const pieceForm = document.getElementById("pieceForm");
+document.getElementById("addPieceButton").addEventListener("click", () => {
+  pieceModal.classList.add("open"); pieceModal.setAttribute("aria-hidden", "false");
+});
+document.getElementById("closePieceModal").addEventListener("click", closePieceModal);
+pieceModal.addEventListener("click", event => { if (event.target === pieceModal) closePieceModal(); });
+function closePieceModal() {
+  pieceModal.classList.remove("open"); pieceModal.setAttribute("aria-hidden", "true");
+}
+pieceForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  const file = document.getElementById("piecePhoto").files[0];
+  if (!file) return;
+  const item = {
+    id: crypto.randomUUID(),
+    name: document.getElementById("pieceName").value.trim(),
+    category: document.getElementById("pieceCategory").value,
+    color: document.getElementById("pieceColor").value.trim() || "Unknown",
+    style: document.getElementById("pieceStyle").value,
+    season: document.getElementById("pieceSeason").value,
+    favourite: document.getElementById("pieceFavourite").checked,
+    image: await fileToDataURL(file),
+    createdAt: new Date().toISOString()
+  };
+  wardrobe.unshift(item); persist(STORAGE_KEYS.wardrobe, wardrobe);
+  renderWardrobe(); updateStats(); pieceForm.reset(); closePieceModal();
+  showToast(`${item.name} is officially in the store. 👗`);
 });
 
 document.getElementById("inspirationUpload").addEventListener("change", async event => {
@@ -155,8 +170,13 @@ function renderWardrobe() {
       <img class="clothing-image" src="${item.image}" alt="${escapeHTML(item.name)}">
       <div class="clothing-info">
         <button class="delete-piece" data-delete="${item.id}" title="Delete">×</button>
-        <strong>${escapeHTML(item.name)}</strong>
-        <small>${prettyCategory(item.category)}</small>
+        <strong>${item.favourite ? '<span class="favourite-mark">♥</span> ' : ''}${escapeHTML(item.name)}</strong>
+        <div class="meta-line">
+          <span class="meta-pill">${prettyCategory(item.category)}</span>
+          <span class="meta-pill">${escapeHTML(item.color || "Unknown")}</span>
+          <span class="meta-pill">${escapeHTML(item.style || "Casual")}</span>
+          <span class="meta-pill">${escapeHTML(item.season || "All year")}</span>
+        </div>
       </div>
     </article>
   `).join("");

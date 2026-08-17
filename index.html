@@ -106,10 +106,7 @@
             <h1>My Wardrobe</h1>
             <p>Upload your pieces. We promise not to judge the quantity.</p>
           </div>
-          <label class="upload-button">
-            + Add pieces
-            <input id="wardrobeUpload" type="file" accept="image/*" multiple hidden />
-          </label>
+          <button class="upload-button" id="addPieceButton">+ Add piece</button>
         </div>
 
         <div class="filter-row" id="categoryFilters">
@@ -127,6 +124,35 @@
           <div>🛍️</div>
           <h2>The shelves are empty.</h2>
           <p>Add a few favourite pieces and we'll start building the store.</p>
+        </div>
+        <div class="modal-backdrop" id="pieceModal" aria-hidden="true">
+          <div class="modal">
+            <button class="modal-close" id="closePieceModal" aria-label="Close">×</button>
+            <span class="eyebrow">ADD TO THE STORE</span>
+            <h2>Okay, what are we working with?</h2>
+            <form id="pieceForm">
+              <label class="field-label">Photo<input id="piecePhoto" type="file" accept="image/*" required /></label>
+              <label class="field-label">Name<input id="pieceName" type="text" placeholder="e.g. Black oversized blazer" required /></label>
+              <div class="form-two">
+                <label class="field-label">Category<select id="pieceCategory">
+                  <option value="top">Top</option><option value="bottom">Bottom</option><option value="dress">Dress</option>
+                  <option value="outerwear">Outerwear</option><option value="shoes">Shoes</option><option value="accessory">Accessory</option>
+                </select></label>
+                <label class="field-label">Colour<input id="pieceColor" type="text" placeholder="Black" /></label>
+              </div>
+              <div class="form-two">
+                <label class="field-label">Style<select id="pieceStyle">
+                  <option>Casual</option><option>Streetwear</option><option>Minimal</option><option>Feminine</option>
+                  <option>Edgy</option><option>Comfy</option><option>Smart</option>
+                </select></label>
+                <label class="field-label">Season<select id="pieceSeason">
+                  <option>All year</option><option>Spring</option><option>Summer</option><option>Autumn</option><option>Winter</option>
+                </select></label>
+              </div>
+              <label class="favourite-row"><input id="pieceFavourite" type="checkbox" /> <span>❤️ Favourite piece</span></label>
+              <button class="primary-button full" type="submit">Add it to the wardrobe</button>
+            </form>
+          </div>
         </div>
       </section>
 

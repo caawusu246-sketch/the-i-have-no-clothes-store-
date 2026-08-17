@@ -56,3 +56,6 @@ The current generator is intentionally local and rule-based. The next developmen
 10. Optional notifications and outfit history.
 
 Never put private API keys in frontend JavaScript or commit them to GitHub.
+
+\n## V0.2 — Wardrobe metadata
+\nThe Add Piece flow now supports photo, name, category, colour, style, season and favourite status. This remains a local prototype; cloud storage and AI recognition come later.
