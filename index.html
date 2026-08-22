@@ -1,296 +1,1098 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The I Have No Clothes Store — a playful digital wardrobe and AI stylist." />
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>The I Have No Clothes Store™</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 </head>
+
 <body>
+
   <div class="app-shell">
-    <header class="topbar">
-      <a class="brand" href="#home" data-route="home">
-        <span class="brand-mark">✦</span>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <button
+        class="brand"
+        data-route="home"
+      >
+        <span class="brand-star">✦</span>
+
         <span>
           <strong>The I Have No Clothes Store™</strong>
-          <small>Chris AI • Head of Wardrobe Operations</small>
+          <small>Chris AI · Head of Wardrobe Operations</small>
         </span>
-      </a>
-      <button class="icon-button" id="menuButton" aria-label="Open menu">☰</button>
+      </button>
+
+
+      <nav class="side-nav">
+
+        <button
+          class="nav-item active"
+          data-route="home"
+        >
+          <span>⌂</span>
+          Home
+        </button>
+
+        <button
+          class="nav-item"
+          data-route="wardrobe"
+        >
+          <span>♙</span>
+          Wardrobe
+        </button>
+
+        <button
+          class="nav-item"
+          data-route="generator"
+        >
+          <span>✦</span>
+          Style Me
+        </button>
+
+        <button
+          class="nav-item"
+          data-route="builder"
+        >
+          <span>◻</span>
+          Builder
+        </button>
+
+        <button
+          class="nav-item"
+          data-route="saved"
+        >
+          <span>♥</span>
+          Saved Outfits
+        </button>
+
+        <button
+          class="nav-item"
+          data-route="inspiration"
+        >
+          <span>✧</span>
+          Inspiration
+        </button>
+
+        <button
+          class="nav-item"
+          data-route="avatar"
+        >
+          <span>♟</span>
+          Avatar
+        </button>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <p>
+          You probably have enough clothes.
+        </p>
+
+        <strong>
+          Chris is investigating.
+        </strong>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MOBILE TOPBAR -->
+
+    <header class="mobile-header">
+
+      <button
+        class="mobile-brand"
+        data-route="home"
+      >
+        ✦ The I Have No Clothes Store™
+      </button>
+
+      <button
+        id="menuButton"
+        class="menu-button"
+      >
+        ☰
+      </button>
+
     </header>
 
-    <main id="app">
-      <section class="page active" id="home">
-        <div class="hero-card">
-          <span class="eyebrow">WELCOME TO THE STORE</span>
-          <h1>I have nothing to wear.</h1>
-          <p class="hero-subtitle">
-            A completely unnecessary solution to a problem that apparently does not exist.
+
+    <main class="main-content">
+
+
+      <!-- HOME -->
+
+      <section
+        class="page active"
+        id="home"
+      >
+
+        <div class="home-hero">
+
+          <span class="eyebrow">
+            DIGITAL WARDROBE
+          </span>
+
+          <h1>
+            I have nothing
+            <br>
+            to wear.
+          </h1>
+
+          <p>
+            A completely unnecessary solution to a problem
+            that apparently does not exist.
           </p>
 
-          <div class="chris-message">
-            <div class="avatar">C</div>
-            <div>
-              <strong>Chris AI</strong>
-              <p>
-                Hi, I'm Chris, your boyfriend. I'm here to assist you and prove that,
-                actually, you <em>do</em> have enough clothes and shoes.
-              </p>
-            </div>
+          <div class="home-actions">
+
+            <button
+              class="primary-button"
+              data-route="generator"
+            >
+              Style me ✨
+            </button>
+
+            <button
+              class="secondary-button"
+              data-route="builder"
+            >
+              Build an outfit
+            </button>
+
           </div>
 
-          <div class="hero-actions">
-            <button class="primary-button" data-route="generator">I HAVE NOTHING TO WEAR ✨</button>
-            <button class="secondary-button" data-route="wardrobe">Show Me My Wardrobe</button>
-          </div>
         </div>
 
+
         <div class="stats-grid">
+
           <article class="stat-card">
             <span>👚</span>
             <strong id="topCount">0</strong>
-            <small>tops</small>
+            <small>Tops</small>
           </article>
+
           <article class="stat-card">
             <span>👖</span>
             <strong id="bottomCount">0</strong>
-            <small>bottoms</small>
+            <small>Bottoms</small>
           </article>
+
           <article class="stat-card">
             <span>👟</span>
             <strong id="shoeCount">0</strong>
-            <small>shoes</small>
+            <small>Shoes</small>
           </article>
+
           <article class="stat-card">
-            <span>✨</span>
+            <span>♥</span>
             <strong id="savedCount">0</strong>
-            <small>saved looks</small>
+            <small>Saved looks</small>
           </article>
+
         </div>
 
-        <section class="section-block">
-          <div class="section-heading">
-            <div>
-              <span class="eyebrow">QUICK START</span>
-              <h2>What are we doing today?</h2>
-            </div>
-          </div>
-          <div class="quick-grid">
-            <button class="feature-card" data-route="generator">
-              <span>✨</span>
-              <strong>Make me an outfit</strong>
-              <small>Tell Chris your mood and occasion.</small>
-            </button>
-            <button class="feature-card" data-route="builder">
-              <span>🪞</span>
-              <strong>Build it myself</strong>
-              <small>Mix and match your actual wardrobe.</small>
-            </button>
-            <button class="feature-card" data-route="inspiration">
-              <span>📌</span>
-              <strong>Steal my inspiration</strong>
-              <small>Save Pinterest-style inspiration for later.</small>
-            </button>
-          </div>
-        </section>
       </section>
 
-      <section class="page" id="wardrobe">
-        <div class="page-heading">
+
+      <!-- WARDROBE -->
+
+      <section
+        class="page"
+        id="wardrobe"
+      >
+
+        <div class="page-top">
+
           <div>
-            <span class="eyebrow">YOUR CLOSET</span>
-            <h1>My Wardrobe</h1>
-            <p>Upload your pieces. We promise not to judge the quantity.</p>
+
+            <span class="eyebrow">
+              YOUR CLOTHES
+            </span>
+
+            <h1>
+              Wardrobe
+            </h1>
+
+            <p>
+              The evidence suggests you own clothes.
+            </p>
+
           </div>
-          <button class="upload-button" id="addPieceButton">+ Add piece</button>
+
+          <button
+            class="primary-button"
+            id="addPieceButton"
+          >
+            + Add clothing
+          </button>
+
         </div>
 
-        <div class="filter-row" id="categoryFilters">
-          <button class="filter active" data-category="all">All</button>
-          <button class="filter" data-category="top">Tops</button>
-          <button class="filter" data-category="bottom">Bottoms</button>
-          <button class="filter" data-category="dress">Dresses</button>
-          <button class="filter" data-category="outerwear">Outerwear</button>
-          <button class="filter" data-category="shoes">Shoes</button>
-          <button class="filter" data-category="accessory">Accessories</button>
+
+        <div
+          class="filters"
+          id="categoryFilters"
+        >
+
+          <button
+            class="filter active"
+            data-category="all"
+          >
+            All
+          </button>
+
+          <button
+            class="filter"
+            data-category="top"
+          >
+            Tops
+          </button>
+
+          <button
+            class="filter"
+            data-category="bottom"
+          >
+            Bottoms
+          </button>
+
+          <button
+            class="filter"
+            data-category="dress"
+          >
+            Dresses
+          </button>
+
+          <button
+            class="filter"
+            data-category="outerwear"
+          >
+            Outerwear
+          </button>
+
+          <button
+            class="filter"
+            data-category="shoes"
+          >
+            Shoes
+          </button>
+
+          <button
+            class="filter"
+            data-category="accessory"
+          >
+            Accessories
+          </button>
+
         </div>
 
-        <div id="wardrobeGrid" class="wardrobe-grid"></div>
-        <div id="emptyWardrobe" class="empty-state">
-          <div>🛍️</div>
-          <h2>The shelves are empty.</h2>
-          <p>Add a few favourite pieces and we'll start building the store.</p>
+
+        <div
+          class="wardrobe-grid"
+          id="wardrobeGrid"
+        ></div>
+
+
+        <div
+          class="empty-state"
+          id="emptyWardrobe"
+        >
+          <span>👗</span>
+          <h2>Your wardrobe is suspiciously empty.</h2>
+          <p>Add your first piece of clothing.</p>
         </div>
-        <div class="modal-backdrop" id="pieceModal" aria-hidden="true">
-          <div class="modal">
-            <button class="modal-close" id="closePieceModal" aria-label="Close">×</button>
-            <span class="eyebrow">ADD TO THE STORE</span>
-            <h2>Okay, what are we working with?</h2>
-            <form id="pieceForm">
-              <label class="field-label">Photo<input id="piecePhoto" type="file" accept="image/*" required /></label>
-              <label class="field-label">Name<input id="pieceName" type="text" placeholder="e.g. Black oversized blazer" required /></label>
-              <div class="form-two">
-                <label class="field-label">Category<select id="pieceCategory">
-                  <option value="top">Top</option><option value="bottom">Bottom</option><option value="dress">Dress</option>
-                  <option value="outerwear">Outerwear</option><option value="shoes">Shoes</option><option value="accessory">Accessory</option>
-                </select></label>
-                <label class="field-label">Colour<input id="pieceColor" type="text" placeholder="Black" /></label>
-              </div>
-              <div class="form-two">
-                <label class="field-label">Style<select id="pieceStyle">
-                  <option>Casual</option><option>Streetwear</option><option>Minimal</option><option>Feminine</option>
-                  <option>Edgy</option><option>Comfy</option><option>Smart</option>
-                </select></label>
-                <label class="field-label">Season<select id="pieceSeason">
-                  <option>All year</option><option>Spring</option><option>Summer</option><option>Autumn</option><option>Winter</option>
-                </select></label>
-              </div>
-              <label class="favourite-row"><input id="pieceFavourite" type="checkbox" /> <span>❤️ Favourite piece</span></label>
-              <button class="primary-button full" type="submit">Add it to the wardrobe</button>
-            </form>
-          </div>
-        </div>
+
       </section>
 
-      <section class="page" id="generator">
-        <div class="page-heading">
+
+      <!-- STYLE ME -->
+
+      <section
+        class="page"
+        id="generator"
+      >
+
+        <div class="page-top">
+
           <div>
-            <span class="eyebrow">CHRIS AI • STYLIST MODE</span>
-            <h1>Okay. What are we wearing?</h1>
-            <p>Give me the situation. I'll handle the wardrobe crisis.</p>
+
+            <span class="eyebrow">
+              CHRIS AI
+            </span>
+
+            <h1>
+              Style me
+            </h1>
+
+            <p>
+              Give Chris some information and hope for the best.
+            </p>
+
           </div>
+
         </div>
 
-        <div class="generator-layout">
-          <div class="control-panel">
-            <div class="form-group">
-              <label>What's the mood?</label>
-              <div class="mood-grid">
-                <button class="mood-option selected" data-mood="happy">😊<span>Happy</span></button>
-                <button class="mood-option" data-mood="meh">😐<span>Meh</span></button>
-                <button class="mood-option" data-mood="sad">😭<span>Sad</span></button>
-                <button class="mood-option" data-mood="mad">😡<span>Don't talk</span></button>
-                <button class="mood-option" data-mood="cool">😎<span>Feeling myself</span></button>
-                <button class="mood-option" data-mood="tired">🥱<span>Just woke up</span></button>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label for="occasion">Where are you going?</label>
-              <select id="occasion">
-                <option value="casual">Casual day</option>
-                <option value="work">Work / university</option>
-                <option value="date">Date night</option>
-                <option value="dinner">Dinner</option>
-                <option value="party">Party</option>
-                <option value="holiday">Holiday</option>
-                <option value="unknown">I don't know, make me look good</option>
-              </select>
-            </div>
+        <div class="generator-card">
 
-            <div class="form-group">
-              <label for="style">What vibe?</label>
-              <select id="style">
-                <option value="casual-chic">Casual chic</option>
-                <option value="streetwear">Streetwear</option>
-                <option value="minimal">Minimal</option>
-                <option value="feminine">Feminine</option>
-                <option value="edgy">Edgy</option>
-                <option value="comfy">Comfy but cute</option>
-              </select>
-            </div>
+          <label>
+            Occasion
 
-            <button class="primary-button full" id="generateButton">Generate my outfit ✨</button>
-          </div>
+            <select id="occasion">
+              <option value="casual">Casual day</option>
+              <option value="work">Work / University</option>
+              <option value="date">Date night</option>
+              <option value="dinner">Dinner</option>
+              <option value="party">Party</option>
+              <option value="holiday">Holiday</option>
+              <option value="unknown">I don't know</option>
+            </select>
 
-          <div class="result-panel" id="outfitResult">
-            <div class="result-placeholder">
-              <span>✨</span>
-              <h2>Your outfit is waiting.</h2>
-              <p>Chris has not been given enough information to make a questionable decision yet.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="builder">
-        <div class="page-heading">
-          <div>
-            <span class="eyebrow">MANUAL MODE</span>
-            <h1>Build the outfit yourself.</h1>
-            <p>Because apparently AI doesn't get to have all the fun.</p>
-          </div>
-        </div>
-
-        <div class="builder-layout">
-          <div class="builder-slots">
-            <div class="outfit-preview">
-              <div class="preview-head">YOUR LOOK</div>
-              <div class="slot-list" id="builderSlots"></div>
-            </div>
-            <div class="builder-actions">
-              <button class="secondary-button" id="clearBuilder">Clear</button>
-              <button class="primary-button" id="saveBuilder">Save outfit ❤️</button>
-            </div>
-          </div>
-          <div>
-            <h3>Pick pieces</h3>
-            <div class="mini-wardrobe" id="builderWardrobe"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="page" id="inspiration">
-        <div class="page-heading">
-          <div>
-            <span class="eyebrow">INSPIRATION</span>
-            <h1>Steal my Pinterest style.</h1>
-            <p>Save inspiration images here. Pinterest integration comes later.</p>
-          </div>
-          <label class="upload-button">
-            + Add inspiration
-            <input id="inspirationUpload" type="file" accept="image/*" multiple hidden />
           </label>
-        </div>
-        <div id="inspirationGrid" class="inspiration-grid"></div>
-        <div id="emptyInspiration" class="empty-state">
-          <div>📌</div>
-          <h2>No inspiration yet.</h2>
-          <p>Add a few looks you love. Later we'll teach Chris how to recreate the vibe from your wardrobe.</p>
-        </div>
-      </section>
 
-      <section class="page" id="saved">
-        <div class="page-heading">
-          <div>
-            <span class="eyebrow">YOUR FAVOURITES</span>
-            <h1>Saved Looks</h1>
-            <p>The outfits that survived the selection process.</p>
+
+          <label>
+            Style
+
+            <select id="style">
+              <option value="casual">Casual</option>
+              <option value="minimal">Minimal</option>
+              <option value="streetwear">Streetwear</option>
+              <option value="smart-casual">Smart casual</option>
+              <option value="dressy">Dressy</option>
+            </select>
+
+          </label>
+
+
+          <div class="mood-section">
+
+            <p>
+              Current emotional state:
+            </p>
+
+            <div class="mood-row">
+
+              <button class="mood-option selected" data-mood="happy">😊</button>
+              <button class="mood-option" data-mood="meh">😐</button>
+              <button class="mood-option" data-mood="sad">😔</button>
+              <button class="mood-option" data-mood="mad">😤</button>
+              <button class="mood-option" data-mood="cool">😎</button>
+              <button class="mood-option" data-mood="tired">😴</button>
+
+            </div>
+
           </div>
-        </div>
-        <div id="savedGrid" class="saved-grid"></div>
-        <div id="emptySaved" class="empty-state">
-          <div>❤️</div>
-          <h2>Nothing saved yet.</h2>
-          <p>When an outfit deserves a place in history, save it here.</p>
-        </div>
-      </section>
-    </main>
 
-    <nav class="bottom-nav" aria-label="Main navigation">
-      <button data-route="home" class="nav-item active"><span>⌂</span><small>Home</small></button>
-      <button data-route="wardrobe" class="nav-item"><span>👗</span><small>Wardrobe</small></button>
-      <button data-route="generator" class="nav-item main-nav"><span>✨</span><small>Style Me</small></button>
-      <button data-route="builder" class="nav-item"><span>🪞</span><small>Builder</small></button>
-      <button data-route="saved" class="nav-item"><span>❤️</span><small>Saved</small></button>
-    </nav>
+
+          <button
+            class="primary-button"
+            id="generateButton"
+          >
+            Ask Chris to decide ✨
+          </button>
+
+        </div>
+
+
+        <div
+          id="outfitResult"
+          class="outfit-result"
+        >
+
+          <div class="empty-result">
+
+            <span>✦</span>
+
+            <h2>
+              Your outfit is waiting.
+            </h2>
+
+            <p>
+              Chris has not made a questionable decision yet.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- BUILDER -->
+
+      <section
+        class="page"
+        id="builder"
+      >
+
+        <div class="page-top">
+
+          <div>
+
+            <span class="eyebrow">
+              MANUAL MODE
+            </span>
+
+            <h1>
+              Build your outfit
+            </h1>
+
+            <p>
+              Dress your character using your wardrobe.
+            </p>
+
+          </div>
+
+          <button
+            class="secondary-button"
+            id="randomOutfitButton"
+          >
+            ✦ Random outfit
+          </button>
+
+        </div>
+
+
+        <div class="builder-app">
+
+
+          <!-- CHARACTER -->
+
+          <div class="character-panel">
+
+            <div class="character-panel-head">
+
+              <div>
+
+                <span class="eyebrow">
+                  YOUR CHARACTER
+                </span>
+
+                <h2>
+                  Try the look
+                </h2>
+
+              </div>
+
+              <button
+                class="small-button"
+                data-route="avatar"
+              >
+                Change Avatar
+              </button>
+
+            </div>
+
+
+            <div
+              class="character-stage"
+              id="characterStage"
+            >
+
+              <div
+                class="default-character"
+                id="defaultCharacter"
+              >
+
+                <div class="character-hair"></div>
+                <div class="character-head"></div>
+
+                <div class="character-neck"></div>
+
+                <div class="character-body">
+
+                  <div class="character-arm left"></div>
+
+                  <div class="character-torso"></div>
+
+                  <div class="character-arm right"></div>
+
+                </div>
+
+                <div class="character-legs">
+
+                  <div></div>
+                  <div></div>
+
+                </div>
+
+                <div class="character-feet">
+
+                  <div></div>
+                  <div></div>
+
+                </div>
+
+              </div>
+
+
+              <img
+                id="characterAvatar"
+                class="character-avatar"
+                alt="Your avatar"
+              >
+
+
+              <div
+                class="outfit-layer"
+                id="outfitLayer"
+              ></div>
+
+
+              <div
+                class="character-empty-message"
+                id="characterEmptyMessage"
+              >
+                Select clothes below.
+              </div>
+
+            </div>
+
+
+            <div class="character-actions">
+
+              <button
+                class="secondary-button"
+                id="clearBuilder"
+              >
+                Clear all
+              </button>
+
+              <button
+                class="primary-button"
+                id="saveBuilder"
+              >
+                Save outfit ♥
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- SELECTED ITEMS -->
+
+          <div class="selected-panel">
+
+            <span class="eyebrow">
+              YOUR OUTFIT
+            </span>
+
+            <div
+              class="slot-list"
+              id="builderSlots"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CLOTHING PICKER -->
+
+        <div class="builder-wardrobe-section">
+
+          <div class="picker-heading">
+
+            <div>
+
+              <span class="eyebrow">
+                PICK A PIECE
+              </span>
+
+              <h2>
+                Your wardrobe
+              </h2>
+
+            </div>
+
+            <p>
+              Click a piece to put it on your character.
+            </p>
+
+          </div>
+
+
+          <div
+            class="builder-grid"
+            id="builderWardrobe"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SAVED -->
+
+      <section
+        class="page"
+        id="saved"
+      >
+
+        <div class="page-top">
+
+          <div>
+
+            <span class="eyebrow">
+              COLLECTION
+            </span>
+
+            <h1>
+              Saved outfits
+            </h1>
+
+            <p>
+              Proof that you occasionally know what to wear.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="saved-grid"
+          id="savedGrid"
+        ></div>
+
+
+        <div
+          class="empty-state"
+          id="emptySaved"
+        >
+
+          <span>♥</span>
+
+          <h2>
+            No saved outfits yet.
+          </h2>
+
+          <p>
+            Build a look and save it here.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- INSPIRATION -->
+
+      <section
+        class="page"
+        id="inspiration"
+      >
+
+        <div class="page-top">
+
+          <div>
+
+            <span class="eyebrow">
+              IDEAS
+            </span>
+
+            <h1>
+              Inspiration
+            </h1>
+
+            <p>
+              Save outfits you want to pretend you will recreate.
+            </p>
+
+          </div>
+
+          <label
+            class="primary-button upload-label"
+          >
+
+            + Add inspiration
+
+            <input
+              id="inspirationUpload"
+              type="file"
+              accept="image/*"
+              multiple
+            >
+
+          </label>
+
+        </div>
+
+
+        <div
+          class="inspiration-grid"
+          id="inspirationGrid"
+        ></div>
+
+
+        <div
+          class="empty-state"
+          id="emptyInspiration"
+        >
+
+          <span>✧</span>
+
+          <h2>
+            Nothing saved yet.
+          </h2>
+
+          <p>
+            Add some outfit inspiration.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- AVATAR -->
+
+      <section
+        class="page"
+        id="avatar"
+      >
+
+        <div class="page-top">
+
+          <div>
+
+            <span class="eyebrow">
+              YOUR CHARACTER
+            </span>
+
+            <h1>
+              Avatar
+            </h1>
+
+            <p>
+              Upload a full-body photo to use as your character.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="avatar-page-card">
+
+          <div
+            class="avatar-placeholder"
+            id="avatarPlaceholder"
+          >
+
+            <div class="avatar-big-icon">
+              ♙
+            </div>
+
+            <h2>
+              Create your character
+            </h2>
+
+            <p>
+              Upload a clear full-body photo.
+            </p>
+
+          </div>
+
+
+          <img
+            id="avatarImage"
+            class="avatar-page-image"
+            alt="Your avatar"
+          >
+
+        </div>
+
+
+        <div class="avatar-actions">
+
+          <label
+            class="primary-button upload-label"
+          >
+
+            Upload Avatar
+
+            <input
+              id="avatarUpload"
+              type="file"
+              accept="image/*"
+            >
+
+          </label>
+
+
+          <button
+            class="secondary-button"
+            id="removeAvatar"
+          >
+            Remove Avatar
+          </button>
+
+        </div>
+<div class="avatar-settings">
+
+  <div class="avatar-setting">
+
+    <label>Your avatar</label>
+
+    <div class="gender-buttons">
+
+      <button
+        type="button"
+        class="gender-button active"
+        data-gender="female"
+      >
+        Female
+      </button>
+
+      <button
+        type="button"
+        class="gender-button"
+        data-gender="male"
+      >
+        Male
+      </button>
+
+    </div>
+
   </div>
 
-  <div class="toast" id="toast"></div>
+
+  <div class="avatar-setting">
+
+    <label for="bodySize">
+      Body size:
+      <strong id="bodySizeLabel">
+        Medium
+      </strong>
+    </label>
+
+    <input
+      id="bodySize"
+      type="range"
+      min="1"
+      max="5"
+      value="3"
+      step="1"
+    >
+
+    <div class="body-size-labels">
+
+      <span>Very slim</span>
+      <span>Slim</span>
+      <span>Medium</span>
+      <span>Curvy</span>
+      <span>Plus size</span>
+
+    </div>
+
+  </div>
+
+</div>
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- ADD CLOTHING MODAL -->
+
+  <div
+    class="modal"
+    id="pieceModal"
+    aria-hidden="true"
+  >
+
+    <div class="modal-card">
+
+      <button
+        class="modal-close"
+        id="closePieceModal"
+      >
+        ×
+      </button>
+
+      <span class="eyebrow">
+        NEW PIECE
+      </span>
+
+      <h2>
+        Add clothing
+      </h2>
+
+
+      <form id="pieceForm">
+
+        <label>
+          Photo
+
+          <input
+            id="piecePhoto"
+            type="file"
+            accept="image/*"
+            required
+          >
+
+        </label>
+
+
+        <button
+          type="button"
+          class="secondary-button"
+          id="askChrisButton"
+        >
+          Ask Chris ✨
+        </button>
+
+        <p
+          class="chris-status"
+          id="chrisStatus"
+        ></p>
+
+
+        <label>
+          Name
+
+          <input
+            id="pieceName"
+            type="text"
+            placeholder="Black oversized blazer"
+          >
+
+        </label>
+
+
+        <label>
+          Category
+
+          <select id="pieceCategory">
+
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+            <option value="dress">Dress</option>
+            <option value="outerwear">Outerwear</option>
+            <option value="shoes">Shoes</option>
+            <option value="accessory">Accessory</option>
+
+          </select>
+
+        </label>
+
+
+        <label>
+          Colour
+
+          <input
+            id="pieceColor"
+            type="text"
+            placeholder="Black"
+          >
+
+        </label>
+
+
+        <label>
+          Style
+
+          <select id="pieceStyle">
+
+            <option>Casual</option>
+            <option>Minimal</option>
+            <option>Streetwear</option>
+            <option>Smart casual</option>
+            <option>Dressy</option>
+
+          </select>
+
+        </label>
+
+
+        <label>
+          Season
+
+          <select id="pieceSeason">
+
+            <option>All year</option>
+            <option>Spring</option>
+            <option>Summer</option>
+            <option>Autumn</option>
+            <option>Winter</option>
+
+          </select>
+
+        </label>
+
+
+        <label class="checkbox-row">
+
+          <input
+            id="pieceFavourite"
+            type="checkbox"
+          >
+
+          Favourite piece ♥
+
+        </label>
+
+
+        <button
+          class="primary-button full"
+          type="submit"
+        >
+          Add to wardrobe
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
   <script src="js/app.js"></script>
+
 </body>
 </html>
