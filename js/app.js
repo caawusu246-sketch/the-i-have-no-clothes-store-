@@ -1207,7 +1207,82 @@ function fileToDataURL(file) {
     }
   );
 }
+/*
+================================
+BUILD AN OUTFIT
+================================
+*/
 
+function buildOutfit() {
+  if (wardrobe.length === 0) {
+    alert("Add some clothes to your wardrobe first!");
+    return;
+  }
+
+  const tops = wardrobe.filter(item =>
+    ["top", "t-shirt", "shirt", "hoodie", "jumper"].some(word =>
+      (item.category || "").toLowerCase().includes(word)
+    )
+  );
+
+  const bottoms = wardrobe.filter(item =>
+    ["bottom", "trousers", "jeans", "shorts", "skirt"].some(word =>
+      (item.category || "").toLowerCase().includes(word)
+    )
+  );
+
+  const shoes = wardrobe.filter(item =>
+    ["shoe", "shoes", "sneakers", "trainer"].some(word =>
+      (item.category || "").toLowerCase().includes(word)
+    )
+  );
+
+  const pickRandom = (items) =>
+    items.length ? items[Math.floor(Math.random() * items.length)] : null;
+
+  const outfit = {
+    top: pickRandom(tops),
+    bottom: pickRandom(bottoms),
+    shoes: pickRandom(shoes)
+  };
+
+  let message = "Chris picked your outfit:\n\n";
+
+  if (outfit.top) message += `👕 ${outfit.top.name}\n`;
+  if (outfit.bottom) message += `👖 ${outfit.bottom.name}\n`;
+  if (outfit.shoes) message += `👟 ${outfit.shoes.name}\n`;
+
+  if (!outfit.top && !outfit.bottom && !outfit.shoes) {
+    message = "Chris couldn't build an outfit yet. Add more clothing categories!";
+  }
+function addBuildOutfitButton() {
+  const button = document.createElement("button");
+
+  button.id = "quickBuildOutfit";
+  button.textContent = "✨ Build an Outfit";
+
+  button.style.position = "fixed";
+  button.style.right = "20px";
+  button.style.bottom = "20px";
+  button.style.zIndex = "9999";
+  button.style.padding = "14px 20px";
+  button.style.border = "none";
+  button.style.borderRadius = "999px";
+  button.style.background = "#2d2926";
+  button.style.color = "#ffffff";
+  button.style.fontSize = "16px";
+  button.style.fontWeight = "bold";
+  button.style.cursor = "pointer";
+  button.style.boxShadow = "0 8px 25px rgba(0,0,0,0.2)";
+
+  button.addEventListener("click", buildOutfit);
+
+  document.body.appendChild(button);
+}
+
+addBuildOutfitButton();
+  alert(message);
+}
 /* ===============================
    START APP
 ================================ */
